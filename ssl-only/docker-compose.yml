@@ -75,7 +75,7 @@ services:
       KAFKA_SECURITY_INTER_BROKER_PROTOCOL: SSL
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     volumes:
-      - ${KAFKA_SSL_SECRETS_DIR}:/etc/kafka/secrets
+      - ${KAFKA_SSL_SECRETS_DIR}/broker-1:/etc/kafka/secrets
     networks:
       - kafka-cluster-network
 
@@ -104,7 +104,7 @@ services:
       KAFKA_SECURITY_INTER_BROKER_PROTOCOL: SSL
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     volumes:
-      - ${KAFKA_SSL_SECRETS_DIR}:/etc/kafka/secrets
+      - ${KAFKA_SSL_SECRETS_DIR}/broker-2:/etc/kafka/secrets
     networks:
       - kafka-cluster-network
 
@@ -133,7 +133,7 @@ services:
       KAFKA_SECURITY_INTER_BROKER_PROTOCOL: SSL
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     volumes:
-      - ${KAFKA_SSL_SECRETS_DIR}:/etc/kafka/secrets
+      - ${KAFKA_SSL_SECRETS_DIR}/broker-3:/etc/kafka/secrets
     networks:
       - kafka-cluster-network
 
