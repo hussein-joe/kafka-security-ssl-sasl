@@ -1,5 +1,5 @@
 ---
-version: '3'
+version: '3.5'
 services:
   zookeeper-1:
     image: confluentinc/cp-zookeeper:5.0.1
@@ -14,6 +14,8 @@ services:
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
       ZOOKEEPER_SERVERS: zookeeper-1:22888:23888;zookeeper-2:32888:33888;zookeeper-3:42888:43888
+    networks:
+      - kafka-cluster-network
 
   zookeeper-2:
     image: confluentinc/cp-zookeeper:5.0.1
@@ -28,6 +30,8 @@ services:
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
       ZOOKEEPER_SERVERS: zookeeper-1:22888:23888;zookeeper-2:32888:33888;zookeeper-3:42888:43888
+    networks:
+      - kafka-cluster-network
 
 
   zookeeper-3:
@@ -43,6 +47,8 @@ services:
       ZOOKEEPER_INIT_LIMIT: 5
       ZOOKEEPER_SYNC_LIMIT: 2
       ZOOKEEPER_SERVERS: zookeeper-1:22888:23888;zookeeper-2:32888:33888;zookeeper-3:42888:43888
+    networks:
+      - kafka-cluster-network
 
 
   kafka-broker-1:
@@ -67,8 +73,11 @@ services:
       KAFKA_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM: " "
       KAFKA_SSL_CLIENT_AUTH: requested
       KAFKA_SECURITY_INTER_BROKER_PROTOCOL: SSL
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     volumes:
       - ${KAFKA_SSL_SECRETS_DIR}:/etc/kafka/secrets
+    networks:
+      - kafka-cluster-network
 
 
   kafka-broker-2:
@@ -93,8 +102,11 @@ services:
       KAFKA_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM: " "
       KAFKA_SSL_CLIENT_AUTH: requested
       KAFKA_SECURITY_INTER_BROKER_PROTOCOL: SSL
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     volumes:
       - ${KAFKA_SSL_SECRETS_DIR}:/etc/kafka/secrets
+    networks:
+      - kafka-cluster-network
 
 
   kafka-broker-3:
@@ -119,6 +131,13 @@ services:
       KAFKA_SSL_ENDPOINT_IDENTIFICATION_ALGORITHM: " "
       KAFKA_SSL_CLIENT_AUTH: requested
       KAFKA_SECURITY_INTER_BROKER_PROTOCOL: SSL
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     volumes:
       - ${KAFKA_SSL_SECRETS_DIR}:/etc/kafka/secrets
+    networks:
+      - kafka-cluster-network
 
+networks:
+  kafka-cluster-network:
+    driver: bridge
+    name: kafka-cluster-network
