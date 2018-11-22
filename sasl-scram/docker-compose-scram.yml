@@ -59,7 +59,7 @@ services:
     networks:
       - kafka-cluster-network
     volumes:
-      - ${KAFKA_SASL_SCRAM_SECRETS_DIR}/zookeeper_server_jaas.conf:/etc/kafka/secrets/zookeeper_server_jaas.conf      
+      - ${KAFKA_SASL_SCRAM_SECRETS_DIR}/zookeeper_server_jaas.conf:/etc/kafka/secrets/zookeeper_server_jaas.conf
 
 
   zookeeper-3:
@@ -90,7 +90,7 @@ services:
     networks:
       - kafka-cluster-network
     volumes:
-      - ${KAFKA_SSL_SECRETS_DIR}/zookeeper_server_jaas.conf:/etc/kafka/secrets/zookeeper_server_jaas.conf
+      - ${KAFKA_SASL_SCRAM_SECRETS_DIR}/zookeeper_server_jaas.conf:/etc/kafka/secrets/zookeeper_server_jaas.conf
 
   kafka-broker-1:
     image: confluentinc/cp-kafka:5.0.1

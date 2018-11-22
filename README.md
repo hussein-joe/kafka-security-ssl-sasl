@@ -25,3 +25,12 @@ Configured both Zookeeper and Kafka to use SASL/SCRAM. To run it
 - Zookeeper needs to be configured with the username/password for all users want to access Kafka. The users
 used to run the example can be configured by running the script `kafka-security-ssl-sasl/sasl-scram/configure_zookeeper.sh`
 - To run console producer and consumer, you could check the commands in the file `kafka-security-ssl-sasl/sasl-scram/kafka-consumers-producers.sh`
+
+
+
+## References
+
+- [Redhat tutorial to configure Zookeeper and Kafka](https://access.redhat.com/documentation/en-us/red_hat_amq_streams/1.0-beta/html/using_amq_streams_on_red_hat_enterprise_linux_rhel/configuring_zookeeper#assembly-configuring-zookeeper-authentication-str)
+- [Confluent reference / configure SCRAM](https://docs.confluent.io/current/kafka/authentication_sasl/authentication_sasl_scram.html)
+- [Cloudera slides to configure SCRAM](https://www.slideshare.net/JeanPaulAzar1/kafka-tutorial-kafka-security)
+- [Blog describe steps to configure SASL/SCRAM](https://sharebigdata.wordpress.com/category/kafka/multiple-saslplainscram/)
