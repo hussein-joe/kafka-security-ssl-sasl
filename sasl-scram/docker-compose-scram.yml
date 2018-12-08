@@ -12,10 +12,9 @@ services:
                           cub zk-ready zookeeper-1:22181 120 && \
                           cub zk-ready zookeeper-2:32181 120 && \
                           cub zk-ready zookeeper-3:42181 120 && \
-                          kafka-configs --zookeeper zookeeper-1:22181 --alter --add-config 'SCRAM-SHA-256=[iterations=4096,password=password]' --entity-type users --entity-name kafkabroker && \
                           kafka-configs --zookeeper zookeeper-1:22181 --alter --add-config 'SCRAM-SHA-256=[iterations=4096,password=password]' --entity-type users --entity-name metricsreporter && \
-                          kafka-configs --zookeeper zookeeper-1:22181 --alter --add-config 'SCRAM-SHA-256=[iterations=4096,password=admin-password]' --entity-type users --entity-name admin && \
-                          kafka-configs --zookeeper zookeeper-1:22181 --alter --add-config 'SCRAM-SHA-256=[iterations=4096,password=password]' --entity-type users --entity-name kafka '"
+                          kafka-configs --zookeeper zookeeper-1:22181 --alter --add-config 'SCRAM-SHA-256=[iterations=4096,password=password]' --entity-type users --entity-name kafkaclient && \
+                          kafka-configs --zookeeper zookeeper-1:22181 --alter --add-config 'SCRAM-SHA-256=[iterations=4096,password=password]' --entity-type users --entity-name kafkabroker '"
     environment:
       KAFKA_BROKER_ID: ignored
       KAFKA_ZOOKEEPER_CONNECT: ignored
